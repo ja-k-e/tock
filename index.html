@@ -1,1 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Goodbye Tock</title>
+    <style>
+      body {
+        background: #2a2ae9;
+        color: white;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+        margin: 0;
+      }
 
+      h1 {
+        max-width: 600px;
+        left: 50%;
+        position: absolute;
+        text-align: center;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 90%;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>
+      Jake is remembering when <span id="subject"></span>
+      <span id="action"></span>
+    </h1>
+    <script>
+      const subjects = [
+        "Alex",
+        "Anam",
+        "Andre",
+        "Andy",
+        "Blake",
+        "BMT",
+        "BP",
+        "Clare",
+        "Colin",
+        "Corey",
+        "Dan",
+        "David",
+        "DJ",
+        "Dylan",
+        "Emily",
+        "Estelle",
+        "Felix",
+        "Fitz",
+        "Jacob",
+        "James",
+        "Jason",
+        "Jeff",
+        "JJ",
+        "Joan",
+        "Jon",
+        "Joy",
+        "Kai",
+        "Karen",
+        "Kelly",
+        "Kristin",
+        "Linnea",
+        "Masha",
+        "Matt",
+        "Matthew",
+        "Michael",
+        "Mieko",
+        "Neil",
+        "Nick",
+        "Paul",
+        "Rachel",
+        "Robin",
+        "Ryan",
+        "Ryne",
+        "Sean",
+        "Song",
+        "Tony",
+      ];
+
+      const cheeses = [
+        "asadero",
+        "asiago",
+        "blue",
+        "brick",
+        "brie",
+        "burrata",
+        "butterkase",
+        "camembert",
+        "cheddar",
+        "colby",
+        "cotija",
+        "edam",
+        "emmentaler",
+        "feta",
+        "fontina",
+        "gorgonzola",
+        "gouda",
+        "havarti",
+        "kasseri",
+        "limburger",
+        "mascarpone",
+        "mozzarella",
+        "muenster",
+        "parmesan",
+        "pepato",
+        "provolone",
+        "ricotta",
+        "romano",
+        "swiss",
+      ];
+
+      const birds = [
+        "albatross",
+        "avocet",
+        "budgie",
+        "canary",
+        "chick",
+        "chickadee",
+        "chicken",
+        "cockatiel",
+        "cockatoo",
+        "coot",
+        "covey",
+        "crow",
+        "cuckoo",
+        "darter",
+        "dove",
+        "duck",
+        "eagle",
+        "falcon",
+        "finch",
+        "flamingo",
+        "fowl",
+        "goldfinch",
+        "goose",
+        "grouse",
+        "hawk",
+        "heron",
+        "jackdaw",
+        "jay",
+        "kestrel",
+        "lark",
+        "loon",
+        "macaw",
+        "magpie",
+        "martin",
+        "osprey",
+        "ostrich",
+        "owl",
+        "parakeet",
+        "parrot",
+        "pelican",
+        "penguin",
+        "pigeon",
+        "pintail",
+        "puffin",
+        "quail",
+        "quetzal",
+        "rail",
+        "raven",
+        "razorbill",
+        "rhea",
+        "rook",
+        "shrike",
+        "skylark",
+        "snipe",
+        "sparrow",
+        "starling",
+        "stork",
+        "swallow",
+        "swift",
+        "tanager",
+        "thrush",
+        "toucan",
+        "turkey",
+        "vulture",
+        "warbler",
+      ];
+
+      const fruits = [
+        "banana",
+        "berry",
+        "cantaloupe",
+        "cherry",
+        "citron",
+        "citrus",
+        "coconut",
+        "date",
+        "fig",
+        "grape",
+        "guava",
+        "kiwi",
+        "lemon",
+        "lime",
+        "mango",
+        "melon",
+        "mulberry",
+        "nectarine",
+        "papaya",
+        "peach",
+        "pear",
+        "pineapple",
+        "plum",
+        "prune",
+        "raisin",
+        "raspberry",
+        "tangerine",
+      ];
+
+      const restaurants = [
+        "Chili's",
+        "Alinea",
+        "Roister",
+        "Outback Steakhouse",
+        "McDonalds",
+        "Pizza Hut",
+        "The Aviary",
+      ];
+
+      const phrases = [
+        "join me for a zoom call",
+        `get a job at ${getThing(restaurants)}`,
+        `find my pet ${getThing(birds)}`,
+        `eat some ${getThing(cheeses)} or a ${getThing(fruits)}`,
+      ];
+
+      const actions = [
+        "did that one thing with PERSON.",
+        `told PERSON to, "${getThing(phrases)}."`,
+        "deleted PERSON's code 🙈.",
+        "had a party with PERSON.",
+        "told Nick about PERSON's skillset.",
+        "accidentally told PERSON it was PERSON's birthday when it wasn't.",
+        `wrote ${Math.ceil(Math.random() * 99)} lines of code.`,
+        `made ${Math.ceil(Math.random() * 99)} too many updates in Figma.`,
+        "accidentally posted their DM to PERSON in #general.",
+        "ate PERSON's lunch on accident 🤣.",
+        "found so many bugs that were ultimately PERSON's fault.",
+        "found PERSON drawing a cake with rectangles in Figma instead of paying attention.",
+        `accidentally made the Tock logo a ${getThing(fruits)} in prod.`,
+        "dropped their computer while presenting.",
+        "caught PERSON closing open tickets without doing anything.",
+        `messaged PERSON, "${getThing(cheeses)} is my favorite cheese!"`,
+        "fell asleep on their keyboard.",
+        `laughingly said, "${getThing(phrases)}."`,
+        `thought ${getThing(restaurants)} should add ${getThing(
+          fruits
+        )} to their menu.`,
+        `thought ${getThing(restaurants)} and ${getThing(
+          restaurants
+        )} were the same place.`,
+      ];
+
+      const subject = document.getElementById("subject");
+      const action = document.getElementById("action");
+
+      subject.innerText = getThing(subjects);
+      let a = actions[Math.floor(Math.random() * actions.length)];
+      while (/PERSON/.test(a)) {
+        a = a.replace("PERSON", getThing(subjects));
+      }
+      action.innerText = a;
+
+      function getThing(list) {
+        const index = Math.floor(Math.random() * list.length);
+        return list.splice(index, 1)[0];
+      }
+    </script>
+  </body>
+</html>
