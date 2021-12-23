@@ -218,21 +218,22 @@
         "McDonalds",
         "Pizza Hut",
         "The Aviary",
+        "Popeye's",
       ];
 
       const phrases = [
         "join me for a zoom call",
-        `get a job at ${getThing(restaurants)}`,
-        `find my pet ${getThing(birds)}`,
-        `eat some ${getThing(cheeses)} or a ${getThing(fruits)}`,
+        `get a job at RESTAURANT`,
+        `find my pet BIRD`,
+        `eat some CHEESE or a FRUIT`,
       ];
 
       const actions = [
         "did that one thing with PERSON.",
-        `told PERSON to, "${getThing(phrases)}."`,
+        `told PERSON to, "PHRASE."`,
         "deleted PERSON's code 🙈.",
         "had a party with PERSON.",
-        "told Nick about PERSON's skillset.",
+        "told PERSON about PERSON's skillset.",
         "accidentally told PERSON it was PERSON's birthday when it wasn't.",
         `wrote ${Math.ceil(Math.random() * 99)} lines of code.`,
         `made ${Math.ceil(Math.random() * 99)} too many updates in Figma.`,
@@ -240,18 +241,18 @@
         "ate PERSON's lunch on accident 🤣.",
         "found so many bugs that were ultimately PERSON's fault.",
         "found PERSON drawing a cake with rectangles in Figma instead of paying attention.",
-        `accidentally made the Tock logo a ${getThing(fruits)} in prod.`,
+        `accidentally made the Tock logo a FRUIT in prod.`,
         "dropped their computer while presenting.",
-        "caught PERSON closing open tickets without doing anything.",
-        `messaged PERSON, "${getThing(cheeses)} is my favorite cheese!"`,
+        "told PERSON they're a good little worker bee.",
+        `invented the concept of CHEESE FRUIT.`,
+        "caught PERSON closing open tickets that weren't fixed.",
+        `messaged PERSON, "CHEESE is my favorite cheese!"`,
         "fell asleep on their keyboard.",
-        `laughingly said, "${getThing(phrases)}."`,
-        `thought ${getThing(restaurants)} should add ${getThing(
-          fruits
-        )} to their menu.`,
-        `thought ${getThing(restaurants)} and ${getThing(
-          restaurants
-        )} were the same place.`,
+        `laughingly said, "PHRASE."`,
+        `thought RESTAURANT should add FRUIT to their menu.`,
+        `thought RESTAURANT and RESTAURANT were the same place.`,
+        "laughed until milk came out their nose.",
+        "couldn't stop talking about that BIRD.",
       ];
 
       const subject = document.getElementById("subject");
@@ -259,8 +260,20 @@
 
       subject.innerText = getThing(subjects);
       let a = actions[Math.floor(Math.random() * actions.length)];
-      while (/PERSON/.test(a)) {
-        a = a.replace("PERSON", getThing(subjects));
+      while (/PHRASE/.test(a)) {
+        a = a.replace("PHRASE", getThing(phrases));
+      }
+      const replacements = {
+        PERSON: subjects,
+        FRUIT: fruits,
+        CHEESE: cheeses,
+        RESTAURANT: restaurants,
+        BIRD: birds,
+      };
+      for (let key in replacements) {
+        while (new RegExp(key).test(a)) {
+          a = a.replace(key, getThing(replacements[key]));
+        }
       }
       action.innerText = a;
 
